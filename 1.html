@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高二错题精讲 · 交互图解</title>
+<style>
+:root { --blue:#2563eb; --red:#dc2626; --green:#16a34a; --ink:#1f2937; --gray:#6b7280; --line:#e5e7eb; }
+* { box-sizing: border-box; }
+body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; color: var(--ink); max-width: 920px; margin: 0 auto; padding: 24px 16px 80px; line-height: 1.75; }
+h1 { font-size: 26px; margin-bottom: 4px; }
+h2 { font-size: 20px; margin-top: 44px; border-left: 5px solid var(--ink); padding-left: 10px; }
+h3 { font-size: 16px; margin: 18px 0 6px; }
+.sub { color: var(--gray); font-size: 14px; }
+.qcard { border: 1px solid var(--line); border-radius: 12px; padding: 12px 18px; margin: 12px 0; background: #fff; font-size: 15px; }
+.ans { display:inline-block; padding: 1px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; margin-left: 8px; vertical-align: 2px; }
+.ans.ok { background: #dcfce7; color: var(--green); }
+.ans.bad { background: #fee2e2; color: var(--red); }
+.stage { background: #f8fafc; border: 1px solid var(--line); border-radius: 10px; padding: 12px; margin: 10px 0; }
+.controls { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin: 8px 0; font-size: 14px; color: var(--gray); }
+button { font: inherit; cursor: pointer; border-radius: 8px; padding: 5px 14px; border: 1px solid #d1d5db; background: #fff; font-size: 14px; }
+button.primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+input[type=range] { accent-color: var(--ink); flex: 1; min-width: 140px; }
+.readout { display: flex; gap: 22px; flex-wrap: wrap; font-size: 15px; margin: 6px 0; font-variant-numeric: tabular-nums; }
+.readout b { font-weight: 600; }
+.note { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 8px 14px; font-size: 14px; margin: 10px 0; }
+.err { background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 8px 14px; font-size: 14px; margin: 10px 0; }
+.okbox { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 8px 14px; font-size: 14px; margin: 10px 0; }
+.steps { counter-reset: s; padding-left: 0; list-style: none; margin: 8px 0; }
+.steps li { margin: 9px 0; padding-left: 34px; position: relative; }
+.steps li::before { counter-increment: s; content: counter(s); position: absolute; left: 0; top: 3px; width: 22px; height: 22px; border-radius: 50%; background: var(--ink); color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+svg { display: block; }
+svg text { font-family: inherit; }
+nav { margin: 10px 0 20px; line-height: 2; }
+nav a { margin-right: 14px; font-size: 14px; color: var(--blue); text-decoration: none; }
+nav a:hover { text-decoration: underline; }
+table.tb { border-collapse: collapse; font-size: 14px; margin: 8px 0; }
+table.tb td, table.tb th { border: 1px solid var(--line); padding: 4px 12px; }
+.eq { background:#f3f4f6; border-radius:6px; padding:1px 7px; }
+.optbtn { margin: 3px 6px 3px 0; }
+.verdict { font-size: 14px; margin-top: 8px; padding: 8px 12px; border-radius: 8px; display: none; }
+.verdict.right { display: block; background: #f0fdf4; border: 1px solid #bbf7d0; }
+.verdict.wrong { display: block; background: #fef2f2; border: 1px solid #fecaca; }
+</style>
+</head>
+<body>
+<h1>高二错题精讲 · 交互图解</h1>
+<p class="sub">根据上传的试卷照片整理 · 数学 / 物理 / 化学 · 每题配可交互动图（拖滑块、点播放）<br>整理日期：2026-11-07</p>
+<nav>
+<a href="#m7">数学第7题 切线夹角</a>
+<a href="#m6">数学第6题 椭圆中点</a>
+<a href="#p7">物理第7题 霍尔速度计</a>
+<a href="#p12">物理第12题 霍尔元件</a>
+<a href="#p8">物理第8题 圆形磁场</a>
+<a href="#p15">物理第15题 电场+圆形磁场</a>
+<a href="#p19">物理第19题 三角形磁场+偏转</a>
+<a href="#c7">化学第7题 化学平衡</a>
+<a href="#c15">化学第15题 NO转化率</a>
+</nav>
+
+<!-- ==================== 数学 第7题 ==================== -->
+<h2 id="m7">数学 · 第7题 抛物线的点对圆两切线的夹角</h2>
+<div class="qcard"><b>题目：</b>已知 P 为抛物线 x&sup2; = 4y 上一点，过 P 作圆 x&sup2; + (y&minus;4)&sup2; = 1 的两条切线，切点分别为 A、B，则 cos&ang;APB 的最小值是（ ）&nbsp;A. 1/2&nbsp; B. 5/6&nbsp; C. 3/4&nbsp; D. 7/9
+<span class="ans ok">答案 B（5/6）</span><span class="ans ok">你的作答正确 ✓</span></div>
+<ol class="steps">
+<li>圆心 C(0, 4)，半径 r = 1。由切线性质 CA&perp;PA，设 &ang;APC = &theta;，则 sin&theta; = r/|CP| = 1/|CP|，且 &ang;APB = 2&theta;。</li>
+<li>二倍角公式统一变量：<span class="eq">cos&ang;APB = 1 &minus; 2sin&sup2;&theta; = 1 &minus; 2/|CP|&sup2;</span>。所以 |CP| 越小，cos&ang;APB 越小（P 离圆越近，夹角越大）。</li>
+<li>设 P(x, x&sup2;/4)：<span class="eq">|CP|&sup2; = x&sup2; + (x&sup2;/4 &minus; 4)&sup2; = (x&sup2;&minus;8)&sup2;/16 + 12 &ge; 12</span>，当 x&sup2; = 8（即 y = 2）时取最小值 12。</li>
+<li>最小值 = 1 &minus; 2/12 = <b>5/6</b>。</li>
+</ol>
+<h3>动图演示：拖动 P（或点动画），看 cos&ang;APB 何时最小</h3>
+<div class="stage">
+<svg id="svg7" viewBox="0 0 640 396" width="100%">
+<line x1="20" y1="360" x2="620" y2="360" stroke="#9ca3af" stroke-width="1"/>
+<line x1="320" y1="10" x2="320" y2="386" stroke="#9ca3af" stroke-width="1"/>
+<text x="612" y="352" font-size="13" fill="#6b7280">x</text>
+<text x="328" y="22" font-size="13" fill="#6b7280">y</text>
+<path id="parab" fill="none" stroke="#2563eb" stroke-width="2"/>
+<circle cx="320" cy="168" r="48" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="332" y="160" font-size="13" fill="#dc2626">C(0,4)</text>
+<line id="tan1" stroke="#dc2626" stroke-width="1.5"/>
+<line id="tan2" stroke="#dc2626" stroke-width="1.5"/>
+<line id="pcLine" stroke="#9ca3af" stroke-width="1" stroke-dasharray="4 4"/>
+<path id="angArc" fill="none" stroke="#1f2937" stroke-width="2"/>
+<circle id="tp1" r="4" fill="#1f2937"/>
+<circle id="tp2" r="4" fill="#1f2937"/>
+<circle id="ptP" r="5.5" fill="#2563eb"/>
+<text id="pLbl" font-size="13" fill="#2563eb">P</text>
+</svg>
+<div class="controls">
+<button id="play7" class="primary">▶ 动画</button>
+<span>拖动 P：</span>
+<input id="sl7" type="range" min="-5" max="5" step="0.02" value="2.8">
+</div>
+<div class="readout">
+<span style="color:var(--gray)">|PC|&sup2; = <b id="vD2" style="color:var(--ink)"></b></span>
+<span style="color:var(--gray)">cos&ang;APB = <b id="vCos" style="color:var(--ink)"></b></span>
+</div>
+<svg viewBox="0 0 640 110" width="100%">
+<text x="8" y="14" font-size="12" fill="#6b7280">cos&ang;APB 随 t = x&sup2; 的变化（谷底即最小值点）</text>
+<line x1="40" y1="92" x2="620" y2="92" stroke="#9ca3af" stroke-width="1"/>
+<path id="cosCurve" fill="none" stroke="#2563eb" stroke-width="2"/>
+<line id="minLine" x1="0" y1="0" x2="0" y2="92" stroke="#dc2626" stroke-width="1" stroke-dasharray="3 3"/>
+<circle id="cosDot" r="5" fill="#1f2937"/>
+<text id="minLbl" font-size="12" fill="#dc2626"></text>
+</svg>
+</div>
+<div class="okbox"><b>草稿核对：</b>你卷面上「x&sup2; = 8 时 y = 2，|PC| = 2&radic;3，cos2&theta; = 1 &minus; 2sin&sup2;&theta; = 1 &minus; 1/6 = 5/6」这条推理链完全正确，这题是稳拿分题。</div>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var px = function(x){ return 320 + 48*x; };
+  var py = function(y){ return 360 - 48*y; };
+  var pd = 'M';
+  for (var i = 0; i <= 96; i++) { var xx = -5.29 + 10.58*i/96; pd += (i ? ' L' : '') + px(xx).toFixed(1) + ' ' + py(xx*xx/4).toFixed(1); }
+  $('parab').setAttribute('d', pd);
+  function cosOfT(t){ return 1 - 2/(((t-8)*(t-8))/16 + 12); }
+  var cd = 'M';
+  for (var j = 0; j <= 100; j++) { var t = 26*j/100; cd += (j ? ' L' : '') + (40 + 580*t/26).toFixed(1) + ' ' + (92 - (cosOfT(t)-0.80)/0.18*70).toFixed(1); }
+  $('cosCurve').setAttribute('d', cd);
+  $('minLine').setAttribute('x1', 40+580*8/26); $('minLine').setAttribute('x2', 40+580*8/26);
+  $('minLbl').setAttribute('x', 40+580*8/26-62); $('minLbl').setAttribute('y', 30);
+  $('minLbl').textContent = 't = 8 时最小 5/6';
+  var playing = false, raf = null, ph = 0;
+  function render7(p){
+    var yv = p*p/4;
+    var vx = p, vy = yv - 4, d2 = vx*vx + vy*vy, d = Math.sqrt(d2);
+    var ux = vx/d, uy = vy/d, wx = -uy, wy = ux;
+    var ca = 1/d, sa = Math.sqrt(Math.max(0, 1 - ca*ca));
+    var A1 = [ca*ux + sa*wx, 4 + ca*uy + sa*wy], A2 = [ca*ux - sa*wx, 4 + ca*uy - sa*wy];
+    $('tan1').setAttribute('x1', px(p)); $('tan1').setAttribute('y1', py(yv));
+    $('tan1').setAttribute('x2', px(A1[0])); $('tan1').setAttribute('y2', py(A1[1]));
+    $('tan2').setAttribute('x1', px(p)); $('tan2').setAttribute('y1', py(yv));
+    $('tan2').setAttribute('x2', px(A2[0])); $('tan2').setAttribute('y2', py(A2[1]));
+    $('pcLine').setAttribute('x1', px(p)); $('pcLine').setAttribute('y1', py(yv));
+    $('pcLine').setAttribute('x2', px(0)); $('pcLine').setAttribute('y2', py(4));
+    $('tp1').setAttribute('cx', px(A1[0])); $('tp1').setAttribute('cy', py(A1[1]));
+    $('tp2').setAttribute('cx', px(A2[0])); $('tp2').setAttribute('cy', py(A2[1]));
+    $('ptP').setAttribute('cx', px(p)); $('ptP').setAttribute('cy', py(yv));
+    $('pLbl').setAttribute('x', px(p)+10); $('pLbl').setAttribute('y', py(yv)+4);
+    $('pLbl').textContent = 'P(' + p.toFixed(2) + ', ' + (p*p/4).toFixed(2) + ')';
+    var a1 = Math.atan2(py(A1[1])-py(yv), px(A1[0])-px(p));
+    var a2 = Math.atan2(py(A2[1])-py(yv), px(A2[0])-px(p));
+    if (a2 < a1) { var tm = a1; a1 = a2; a2 = tm; }
+    $('angArc').setAttribute('d', 'M ' + (px(p)+30*Math.cos(a1)).toFixed(1) + ' ' + (py(yv)+30*Math.sin(a1)).toFixed(1) + ' A 30 30 0 0 1 ' + (px(p)+30*Math.cos(a2)).toFixed(1) + ' ' + (py(yv)+30*Math.sin(a2)).toFixed(1));
+    $('vD2').textContent = d2.toFixed(2);
+    $('vCos').textContent = (1 - 2/d2).toFixed(4);
+    var tt = p*p;
+    $('cosDot').setAttribute('cx', 40+580*tt/26);
+    $('cosDot').setAttribute('cy', 92 - (cosOfT(tt)-0.80)/0.18*70);
+  }
+  $('sl7').addEventListener('input', function(){ playing = false; $('play7').textContent = '▶ 动画'; if (raf) cancelAnimationFrame(raf); render7(parseFloat(this.value)); });
+  $('play7').addEventListener('click', function(){
+    if (playing) { playing = false; this.textContent = '▶ 动画'; if (raf) cancelAnimationFrame(raf); return; }
+    playing = true; this.textContent = '⏸ 暂停';
+    (function loop(){ if (!playing) return; ph += 0.012; var p = 5*Math.sin(ph); $('sl7').value = p; render7(p); raf = requestAnimationFrame(loop); })();
+  });
+  render7(2.8);
+})();
+</script>
+<!-- ==================== 数学 第6题 ==================== -->
+<h2 id="m6">数学 · 第6题 椭圆上关于直线对称的弦中点</h2>
+<div class="qcard"><b>题目：</b>椭圆 x&sup2;/8 + y&sup2;/4 = 1 上两点 A、B 关于直线 2x &minus; y &minus; 1 = 0 对称，则弦 AB 的中点坐标为（ ）&nbsp;A. (1,1)&nbsp; B. (1, 1/2)&nbsp; C. (&minus;1, 1)&nbsp; D. (2, 1/2)
+<span class="ans ok">答案 A（1, 1）</span></div>
+<ol class="steps">
+<li>「A、B 关于直线 l 对称」&rArr; l 是 AB 的<b>垂直平分线</b>：中点 M 在 l 上，且 k<sub>AB</sub> &middot; k<sub>l</sub> = &minus;1。由 k<sub>l</sub> = 2 得 k<sub>AB</sub> = &minus;1/2（卷面这步是对的）。</li>
+<li><b>点差法</b>：A、B 代入椭圆方程相减：(x&#8321;+x&#8322;)(x&#8321;&minus;x&#8322;)/8 + (y&#8321;+y&#8322;)(y&#8321;&minus;y&#8322;)/4 = 0。用 x&#8321;+x&#8322; = 2x&#8320;、y&#8321;+y&#8322; = 2y&#8320;、k<sub>AB</sub> = (y&#8321;&minus;y&#8322;)/(x&#8321;&minus;x&#8322;) 代入，得 <span class="eq">k<sub>AB</sub> = &minus;x&#8320;/(2y&#8320;)</span>。</li>
+<li>令 &minus;x&#8320;/(2y&#8320;) = &minus;1/2 &rArr; x&#8320; = y&#8320;；联立直线方程 2x&#8320; &minus; y&#8320; &minus; 1 = 0，解得 x&#8320; = y&#8320; = 1。</li>
+<li>检验：1/8 + 1/4 = 3/8 &lt; 1，M 在椭圆内部，弦真实存在。</li>
+</ol>
+<div class="err"><b>易错点：</b>点差法结论 k = &minus;b&sup2;x&#8320;/(a&sup2;y&#8320;) 中，本题 a&sup2; = 8、b&sup2; = 4，系数是 4/8 = 1/2，不要代成 2。</div>
+<h3>动图演示：拖动 M 沿直线滑动，观察弦斜率何时等于 &minus;1/2</h3>
+<div class="stage">
+<svg viewBox="0 0 640 420" width="100%">
+<line x1="30" y1="210" x2="610" y2="210" stroke="#9ca3af" stroke-width="1"/>
+<line x1="320" y1="12" x2="320" y2="408" stroke="#9ca3af" stroke-width="1"/>
+<path id="ell" fill="none" stroke="#2563eb" stroke-width="2"/>
+<line id="symLine" stroke="#dc2626" stroke-width="2"/>
+<text x="352" y="120" font-size="13" fill="#dc2626">l: 2x &minus; y &minus; 1 = 0</text>
+<line id="chord" stroke="#1f2937" stroke-width="2.5"/>
+<circle id="mPt" r="6" fill="#1f2937"/>
+<text id="mLbl" font-size="13" fill="#1f2937">M</text>
+<circle id="aPt" r="4" fill="#2563eb"/>
+<circle id="bPt" r="4" fill="#2563eb"/>
+<text id="okFlag" font-size="14" fill="#dc2626" font-weight="600;"></text>
+</svg>
+<div class="controls"><span>M 沿直线滑动：</span>
+<input id="sl6" type="range" min="-1.2" max="3" step="0.01" value="1.9">
+</div>
+<div style="font-size:15px; font-variant-numeric: tabular-nums; color:var(--gray)">
+M = (<b id="vX0" style="color:var(--ink)"></b>, <b id="vY0" style="color:var(--ink)"></b>)，以 M 为中点的弦的斜率 k<sub>AB</sub> = <b id="vK" style="color:var(--ink)"></b> <span id="kHint"></span>
+</div>
+</div>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var qx = function(x){ return 320 + 77*x; };
+  var qy = function(y){ return 210 - 77*y; };
+  var ed = 'M' + qx(2.828) + ' ' + qy(0);
+  for (var m = 1; m <= 120; m++) { var ang = 2*Math.PI*m/120; ed += ' L' + qx(2.828*Math.cos(ang)).toFixed(1) + ' ' + qy(2*Math.sin(ang)).toFixed(1); }
+  $('ell').setAttribute('d', ed);
+  $('symLine').setAttribute('x1', qx(-1.15)); $('symLine').setAttribute('y1', qy(-3.3));
+  $('symLine').setAttribute('x2', qx(2.0)); $('symLine').setAttribute('y2', qy(3.0));
+  function render6(x0){
+    var y0 = 2*x0 - 1, k = -x0/(2*y0);
+    $('mPt').setAttribute('cx', qx(x0)); $('mPt').setAttribute('cy', qy(y0));
+    $('mLbl').setAttribute('x', qx(x0)+10); $('mLbl').setAttribute('y', qy(y0)-8);
+    var A = 1/8 + k*k/4, B = x0/4 + y0*k/2, C = x0*x0/8 + y0*y0/4 - 1;
+    var D = B*B - 4*A*C;
+    $('vX0').textContent = x0.toFixed(2); $('vY0').textContent = y0.toFixed(2); $('vK').textContent = k.toFixed(3);
+    if (D >= 0 && C <= 0) {
+      var s = Math.sqrt(D)/A;
+      var ax = x0 - s/2, bx = x0 + s/2, ay = y0 + k*(-s/2), by = y0 + k*(s/2);
+      $('chord').setAttribute('x1', qx(ax)); $('chord').setAttribute('y1', qy(ay));
+      $('chord').setAttribute('x2', qx(bx)); $('chord').setAttribute('y2', qy(by));
+      $('aPt').setAttribute('cx', qx(ax)); $('aPt').setAttribute('cy', qy(ay));
+      $('bPt').setAttribute('cx', qx(bx)); $('bPt').setAttribute('cy', qy(by));
+      var hit = Math.abs(k + 0.5) < 0.02;
+      $('chord').setAttribute('stroke', hit ? '#dc2626' : '#1f2937');
+      $('chord').setAttribute('stroke-width', hit ? 3.5 : 2.5);
+      $('okFlag').setAttribute('x', qx(x0)+14); $('okFlag').setAttribute('y', qy(y0)+22);
+      $('okFlag').textContent = hit ? '✓ k = &minus;1/2，就是这条弦！' : '';
+      $('kHint').textContent = hit ? '（与直线 l 垂直 ✓）' : '';
+    } else {
+      $('chord').setAttribute('x1', 0); $('chord').setAttribute('y1', 0); $('chord').setAttribute('x2', 0); $('chord').setAttribute('y2', 0);
+      $('aPt').setAttribute('cx', -50); $('bPt').setAttribute('cx', -50); $('okFlag').textContent = '';
+      $('kHint').textContent = '（M 在椭圆外，不存在以 M 为中点的弦）';
+    }
+  }
+  $('sl6').addEventListener('input', function(){ render6(parseFloat(this.value)); });
+  render6(1.9);
+})();
+</script>
+
+<!-- ==================== 物理 第7题 ==================== -->
+<h2 id="p7">物理 · 第7题 自行车霍尔速度计</h2>
+<div class="qcard"><b>题目：</b>自行车速度计可利用霍尔效应传感器获知运动速率。一块磁铁安装在前轮上，轮子每转一圈，磁铁就靠近传感器一次，输出一个脉冲电压。电源输出电压为 U&#8321;，磁场靠近霍尔元件时，在导体前后表面间出现电势差 U&#8322;（前表面电势低于后表面）。说法正确的是（ ）
+<br>A. 图乙中霍尔元件的载流子带正电&nbsp;&nbsp; B. 已知车轮半径，再根据单位时间内的脉冲数，即获得车速大小&nbsp;&nbsp; C. 若电源输出电压 U&#8321; 变大，则霍尔电势差 U&#8322; 变小&nbsp;&nbsp; D. 霍尔电势差 U&#8322; 的大小与霍尔元件所用材料无关
+<span class="ans ok">答案 B</span></div>
+<ol class="steps">
+<li><b>测速原理（B 对）：</b>单位时间脉冲数 = 车轮转动频率 n，车速 v = 2&pi;rn。半径已知、频率可数，车速即得。</li>
+<li><b>载流子正负（A 错）：</b>电流方向与磁场方向已知，前表面电势<b>低</b>说明负电荷积累在前表面（正电荷积累则应前高后低），故载流子是<b>负电荷（电子）</b>——这也与霍尔元件一般用 N 型半导体一致。</li>
+<li><b>U&#8321; 的影响（C 错）：</b>U&#8321; 变大 &rarr; 通过元件的电流 I 变大，由 <span class="eq">U&#8322; = IB/(nqd)</span>，U&#8322; 应变<b>大</b>。</li>
+<li><b>与材料的关系（D 错）：</b>U&#8322; = IB/(nqd)，载流子浓度 n 是材料属性，当然有关。</li>
+</ol>
+<h3>动图 ①：霍尔元件内部——电子漂移、偏转、积累，直至电场力与洛伦兹力平衡</h3>
+<div class="stage">
+<svg id="hallSvg" viewBox="0 0 640 250" width="100%">
+<text x="70" y="45" font-size="13" fill="#6b7280">磁场 B 垂直穿入纸面（&otimes;）</text>
+<g id="bfield"></g>
+<rect x="80" y="90" width="480" height="90" fill="#eff6ff" stroke="#2563eb" stroke-width="2" rx="4"/>
+<text x="560" y="115" font-size="13" fill="#2563eb">后表面(+)</text>
+<text x="560" y="172" font-size="13" fill="#dc2626">前表面(&minus;)</text>
+<line x1="30" y1="135" x2="90" y2="135" stroke="#1f2937" stroke-width="2" marker-end="url(#arrh)"/>
+<text x="34" y="128" font-size="14">I</text>
+<g id="elecs"></g>
+<g id="balanceG" style="display:none">
+<line x1="300" y1="105" x2="300" y2="165" stroke="#dc2626" stroke-width="2" marker-end="url(#arrh2)"/>
+<text x="308" y="125" font-size="13" fill="#dc2626">E（电场力 ↑ 顶住洛伦兹力 ↓）</text>
+<text x="170" y="225" font-size="15">稳定时：evB = eE = eU&#8322;/d &nbsp;&rArr;&nbsp; U&#8322; = vBd</text>
+</g>
+<defs>
+<marker id="arrh" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#1f2937"/></marker>
+<marker id="arrh2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#dc2626"/></marker>
+</defs>
+<text x="80" y="80" font-size="13" fill="#6b7280">电子向左漂移（与 I 反向），洛伦兹力把它们压向前表面</text>
+</svg>
+<div class="controls">
+<button id="hallPlay" class="primary">▶ 播放</button>
+<button id="hallBal">显示平衡分析</button>
+</div>
+</div>
+<h3>动图 ②：车轮转一圈出一个脉冲，计数就是频率 n</h3>
+<div class="stage">
+<svg id="wheelSvg" viewBox="0 0 620 290" width="100%">
+<circle cx="160" cy="155" r="105" fill="none" stroke="#1f2937" stroke-width="3"/>
+<circle cx="160" cy="155" r="8" fill="#1f2937"/>
+<g id="spokes"></g>
+<g id="magnet"><rect x="-13" y="-115" width="26" height="20" rx="3" fill="#dc2626"/><text x="-9" y="-100" font-size="11" fill="#fff">N</text></g>
+<rect x="132" y="12" width="56" height="22" rx="4" fill="#1f2937"/>
+<text x="138" y="28" font-size="12" fill="#fff">传感器</text>
+<text id="pulseTxt" x="320" y="60" font-size="15">脉冲数：0</text>
+<text x="320" y="95" font-size="15">频率 n = <tspan id="freqT">0.0</tspan> r/s</text>
+<text x="320" y="130" font-size="15">v = 2&pi;rn = <tspan id="vT">0.00</tspan> m/s</text>
+<text x="320" y="172" font-size="13" fill="#6b7280">例：轮半径 r = 0.35 m，1 秒收到 3 个脉冲</text>
+<text x="320" y="194" font-size="13" fill="#6b7280">&rArr; v = 2&pi; &times; 0.35 &times; 3 &asymp; 6.6 m/s &asymp; 23.8 km/h</text>
+<text x="320" y="232" font-size="13" fill="#6b7280">所以只需「半径 + 单位时间脉冲数」两个量 —— B 选项正确</text>
+</svg>
+<div class="controls"><button id="wheelPlay" class="primary">▶ 转动</button></div>
+</div>
+<div class="err"><b>错因小结：</b>这题的关键是左手定则（负电荷）判偏转方向 + 霍尔电压公式 U&#8322; = IB/(nqd)。A 由「前低后高」反推负电荷；C、D 直接套公式判断。</div>
+
+<!-- ==================== 物理 第12题 ==================== -->
+<h2 id="p12">物理 · 第12题 霍尔元件（N 型半导体）</h2>
+<div class="qcard"><b>题目：</b>霍尔元件由长&times;宽&times;厚 a&times;b&times;d、单位体积自由电子数为 n 的 N 型半导体制成。在 1、2 间通入电流 I，外加垂直工作面的磁场 B，接线端 3、4 间霍尔电压稳定后满足 <span class="eq">U<sub>H</sub> = R<sub>H</sub> &middot; IB/d</span>，R<sub>H</sub> 为霍尔系数，仅与材料有关。下列说法正确的是（ ）
+<br>A. 接线端 3 的电势比接线端 4 的电势低&nbsp;&nbsp; B. 自由电子受到的洛伦兹力大小为 eU<sub>H</sub>/d&nbsp;&nbsp;（C、D 选项照片上未拍全）
+<span class="ans ok">答案 C</span></div>
+<h3>动图：电子从 2 端漂向 1 端，被洛伦兹力压向 4 端——先自己判断 3、4 谁电势高</h3>
+<div class="stage">
+<svg viewBox="0 0 640 330" width="100%">
+<polygon points="180,60 540,60 520,90 160,90" fill="#e5e7eb" stroke="#9ca3af"/>
+<rect x="160" y="90" width="360" height="140" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<polygon points="160,90 180,60 180,200 160,230" fill="#f3f4f6" stroke="#9ca3af"/>
+<polygon points="520,90 540,60 540,200 520,230" fill="#f3f4f6" stroke="#9ca3af"/>
+<rect x="160" y="230" width="360" height="30" fill="none"/>
+<g id="bfield2"></g>
+<line x1="90" y1="160" x2="156" y2="160" stroke="#1f2937" stroke-width="2" marker-end="url(#arrh)"/>
+<text x="96" y="150" font-size="15">1</text>
+<line x1="524" y1="160" x2="585" y2="160" stroke="#1f2937" stroke-width="2" marker-end="url(#arrh)"/>
+<text x="590" y="150" font-size="15">2</text>
+<line x1="340" y1="90" x2="340" y2="45" stroke="#1f2937" stroke-width="2"/>
+<circle cx="340" cy="40" r="4" fill="#1f2937"/><text x="328" y="30" font-size="15">3</text>
+<line x1="340" y1="230" x2="340" y2="275" stroke="#1f2937" stroke-width="2"/>
+<circle cx="340" cy="280" r="4" fill="#1f2937"/><text x="328" y="305" font-size="15">4</text>
+<text x="330" y="268" font-size="13" fill="#dc2626" font-weight="600">电子在此积累 &rArr; &phi;&#8324; 低</text>
+<text x="352" y="52" font-size="13" fill="#dc2626" font-weight="600">缺电子 &rArr; &phi;&#8323; 高</text>
+<text x="240" y="320" font-size="13" fill="#6b7280">长 a（1&rarr;2 方向）· 宽 b（3&rarr;4 方向）· 厚 d</text>
+<g id="elecs2"></g>
+</svg>
+<div class="controls"><button id="hall2Play" class="primary">▶ 播放电子漂移</button>
+<button id="deriveBtn">一步步推导 U<sub>H</sub> 与 R<sub>H</sub></button></div>
+<ol class="steps" id="derive" style="display:none">
+<li>电流微观式：<span class="eq">I = neSv = nebd &middot; v</span>（横截面积 = 宽 b &times; 厚 d）&rArr; v = I/(nebd)</li>
+<li>稳定时洛伦兹力 = 电场力：<span class="eq">evB = eE = eU<sub>H</sub>/b</span>（3、4 间距是 b，<b>不是 d</b>！）&rArr; B 选项错误，力应为 eU<sub>H</sub>/b</li>
+<li>代入 v：<span class="eq">U<sub>H</sub> = vBb = IB/(ned)</span></li>
+<li>对比题给 <span class="eq">U<sub>H</sub> = R<sub>H</sub>IB/d</span> &rArr; <b>R<sub>H</sub> = 1/(ne)</b>，只含材料量 n——这通常就是 C 选项的内容（正确项）</li>
+<li>A 选项：电子偏向端 4，&phi;&#8324; &lt; &phi;&#8323;，故「3 比 4 低」错误</li>
+</ol>
+</div>
+<div class="note"><b>说明：</b>C、D 选项原文在照片里没拍全。若 C 是「R<sub>H</sub> = 1/(ne)」或「n 越小 U<sub>H</sub> 越大」这类表述，则按上面推导均为正确；把 C、D 文字补给我，我再逐条核对。</div>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var NS = 'http://www.w3.org/2000/svg';
+  function mksvg(tag, attrs, parent){ var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; }
+  /* B field symbols */
+  [['bfield', 110, 30], ['bfield2', 185, 68]].forEach(function(cfg){
+    var g = $(cfg[0]);
+    for (var i = 0; i < 8; i++) { mksvg('text', {x: cfg[1] + i*50, y: cfg[2]+ (cfg[0]=='bfield'?8:0), fontSize: 18, fill: '#6b7280'}, g).textContent = (i%2? '⊗':'⊗'); }
+  });
+  /* 电子漂移动画：第7题 */
+  var g1 = $('elecs'), es1 = [];
+  for (var i = 0; i < 9; i++) { var c = mksvg('circle', {r: 5, fill: '#2563eb'}, g1); es1.push({el: c, t: i/9, lane: 100 + (i%5)*16}); }
+  var playing1 = false, raf1 = null, last1 = 0;
+  function step1(now){
+    if (!playing1) return;
+    var dt = Math.min(0.05, (now - last1)/1000 || 0.016); last1 = now;
+    es1.forEach(function(e){
+      e.t += dt*0.35; if (e.t > 1) { e.t -= 1; e.lane = 100 + Math.random()*70; }
+      var x = 540 - 440*e.t, y = Math.min(e.lane + 90*e.t*e.t, 170);
+      e.el.setAttribute('cx', x); e.el.setAttribute('cy', y);
+      e.el.setAttribute('opacity', e.t > 0.92 ? (1-e.t)/0.08 : 1);
+    });
+    raf1 = requestAnimationFrame(step1);
+  }
+  $('hallPlay').addEventListener('click', function(){
+    if (playing1) { playing1 = false; this.textContent = '▶ 播放'; cancelAnimationFrame(raf1); return; }
+    playing1 = true; this.textContent = '⏸ 暂停'; last1 = performance.now();
+    raf1 = requestAnimationFrame(step1);
+  });
+  $('hallBal').addEventListener('click', function(){ var g = $('balanceG'); g.style.display = g.style.display === 'none' ? 'block' : 'none'; });
+  /* 车轮 */
+  var spokes = $('spokes');
+  for (var s = 0; s < 8; s++) { var a = s*Math.PI/4; mksvg('line', {x1: 160, y1: 155, x2: 160+100*Math.cos(a), y2: 155+100*Math.sin(a), stroke: '#9ca3af', strokeWidth: 2}, spokes); }
+  var ang = 0, playing2 = false, raf2 = null, last2 = 0, pulses = 0, lastPulse = -1;
+  function step2(now){
+    if (!playing2) return;
+    var dt = Math.min(0.05, (now-last2)/1000 || 0.016); last2 = now;
+    ang += dt*1.6;
+    $('magnet').setAttribute('transform', 'translate(160,155) rotate(' + (ang*180/Math.PI) + ')');
+    var near = Math.sin(ang) > 0.995 && Math.cos(ang) > 0;
+    var sector = Math.floor(ang / (2*Math.PI));
+    if (Math.sin(ang) > 0.985 && sector !== lastPulse) { lastPulse = sector; pulses++; $('pulseTxt').textContent = '脉冲数：' + pulses; }
+    if (pulses > 0) { var n = pulses / ((now - t0)/1000); $('freqT').textContent = n.toFixed(1); $('vT').textContent = (2*Math.PI*0.35*n).toFixed(2); }
+    raf2 = requestAnimationFrame(step2);
+  }
+  var t0 = 0;
+  $('wheelPlay').addEventListener('click', function(){
+    if (playing2) { playing2 = false; this.textContent = '▶ 转动'; cancelAnimationFrame(raf2); return; }
+    playing2 = true; this.textContent = '⏸ 停'; if (pulses === 0) t0 = performance.now(); last2 = performance.now();
+    raf2 = requestAnimationFrame(step2);
+  });
+  /* 第12题电子 */
+  var g2 = $('elecs2'), es2 = [];
+  for (var i2 = 0; i2 < 9; i2++) { var c2 = mksvg('circle', {r: 4.5, fill: '#2563eb'}, g2); es2.push({el: c2, t: i2/9, lane: 105 + (i2%5)*26}); }
+  var playing3 = false, raf3 = null, last3 = 0;
+  function step3(now){
+    if (!playing3) return;
+    var dt = Math.min(0.05, (now-last3)/1000 || 0.016); last3 = now;
+    es2.forEach(function(e){
+      e.t += dt*0.3; if (e.t > 1) { e.t -= 1; e.lane = 100 + Math.random()*110; }
+      var x = 505 - 330*e.t, y = Math.min(e.lane + 120*e.t*e.t*0.9, 222);
+      e.el.setAttribute('cx', x); e.el.setAttribute('cy', y);
+      e.el.setAttribute('opacity', e.t > 0.92 ? (1-e.t)/0.08 : 1);
+    });
+    raf3 = requestAnimationFrame(step3);
+  }
+  $('hall2Play').addEventListener('click', function(){
+    if (playing3) { playing3 = false; this.textContent = '▶ 播放电子漂移'; cancelAnimationFrame(raf3); return; }
+    playing3 = true; this.textContent = '⏸ 暂停'; last3 = performance.now();
+    raf3 = requestAnimationFrame(step3);
+  });
+  $('deriveBtn').addEventListener('click', function(){ var d = $('derive'); d.style.display = d.style.display === 'none' ? 'block' : 'none'; });
+})();
+</script>
+<!-- ==================== 物理 第8题 ==================== -->
+<h2 id="p8">物理 · 第8题 圆形磁场中各方向入射粒子的出射区域</h2>
+<div class="qcard"><b>题目：</b>半径为 R 的圆形区域内有匀强磁场（方向垂直圆面），一群相同带电粒子以相同速率 v&#8320; 由 P 点沿纸面内<b>不同方向</b>射入。当磁感应强度为 B&#8321; 时，所有粒子射出磁场的区域占整个圆周长的 1/6；当 B 减小为 B&#8322; 时，出射区域占整个圆周长的 1/3。则 B&#8321;:B&#8322; 为（ ）&nbsp;A. 1:&radic;3&nbsp; B. 2:&radic;3&nbsp; C. &radic;3:1&nbsp; D. 4:&radic;3
+<span class="ans ok">答案 C（&radic;3 : 1）</span><span class="ans ok">你的作答正确 ✓</span></div>
+<ol class="steps">
+<li>同种粒子同速率 &rArr; 轨迹半径 r = mv&#8320;/(qB) 相同；方向不同 &rArr; 轨迹圆绕 P 旋转，出射点沿边界扫成一段弧。r 越大（B 越小），扫过的弧越长。</li>
+<li>出射弧的最远点对应「半圆轨迹」：粒子速度 &perp; PO&#8321; 时转半圆，出射弦最长 = <b>2r</b>。</li>
+<li>设出射弧圆心角为 2&beta;，弦长公式：2r = 2R&middot;sin&beta; &rArr; <span class="eq">r = R&thinsp;sin&beta;</span>。</li>
+<li>B&#8321;：弧占 1/6 &rarr; 2&beta; = 60&deg; &rarr; r&#8321; = R&thinsp;sin30&deg; = R/2；&nbsp; B&#8322;：弧占 1/3 &rarr; 2&beta; = 120&deg; &rarr; r&#8322; = R&thinsp;sin60&deg; = &radic;3R/2。</li>
+<li>B = mv&#8320;/(qr) &prop; 1/r，故 <b>B&#8321;:B&#8322; = r&#8322;:r&#8321; = &radic;3 : 1</b>。</li>
+</ol>
+<h3>动图演示：拖动 r/R（或点预设），看粒子束扫出的出射弧占圆周的比例</h3>
+<div class="stage">
+<svg id="fanSvg" viewBox="0 0 640 410" width="100%">
+<circle cx="250" cy="205" r="140" fill="#f8fafc" stroke="#1f2937" stroke-width="2"/>
+<line x1="110" y1="205" x2="560" y2="205" stroke="#9ca3af" stroke-width="1" stroke-dasharray="5 5"/>
+<g id="trajG"></g>
+<path id="coverArc" fill="none" stroke="#dc2626" stroke-width="6" stroke-linecap="round" opacity="0.85"/>
+<g id="qG"></g>
+<circle cx="250" cy="205" r="3.5" fill="#1f2937"/>
+<text x="256" y="200" font-size="13">O&#8321;</text>
+<circle cx="110" cy="205" r="5" fill="#1f2937"/>
+<text x="96" y="228" font-size="14" font-weight="600">P</text>
+<text x="480" y="196" font-size="12" fill="#6b7280">PO&#8321; 为对称参考轴</text>
+</svg>
+<div class="controls">
+<span>轨迹半径 r/R：</span>
+<input id="slR" type="range" min="0.05" max="1" step="0.005" value="0.5">
+<button id="preset1">跳到 r/R = 0.5（弧 1/6）</button>
+<button id="preset2">跳到 r/R = &radic;3/2（弧 1/3）</button>
+</div>
+<div class="readout">
+<span style="color:var(--gray)">出射弧占圆周 <b id="vFrac" style="color:var(--red)"></b></span>
+<span style="color:var(--gray)">弧圆心角 2&beta; = <b id="vBeta" style="color:var(--ink)"></b></span>
+<span style="color:var(--gray)">B &prop; 1/r，相对值 = <b id="vB" style="color:var(--ink)"></b></span>
+</div>
+</div>
+<div class="okbox"><b>草稿核对：</b>你的「qvB = mv&sup2;/r &rarr; B = mv/qr，B&#8321;:B&#8322; = r&#8322;:r&#8321; = &radic;3:1」完全正确。注意最后一步是<b>反比</b>关系（B 越小 r 越大），弧从 1/6 变 1/3 说明 B 在减小，r 之比取倒数。</div>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var NS = 'http://www.w3.org/2000/svg';
+  var OX = 250, OY = 205, R = 140;
+  var sx = function(x){ return OX + R*x; };
+  var sy = function(y){ return OY - R*y; };
+  function clearG(g){ while (g.firstChild) g.removeChild(g.firstChild); }
+  function mksvg(tag, attrs, parent){ var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; }
+  function build(rr){
+    var gT = $('trajG'), gQ = $('qG');
+    clearG(gT); clearG(gQ);
+    var thetas = [], N = 30;
+    for (var i = 0; i < N; i++) {
+      var phi = -Math.PI/2 + Math.PI*(i+0.5)/N;
+      var cx = -1 + rr*Math.cos(phi - Math.PI/2), cy = rr*Math.sin(phi - Math.PI/2);
+      var a = Math.atan2(0 - cy, -1 - cx);
+      var d = '', hit = null, steps = 0;
+      while (steps < 1200) {
+        var x = cx + rr*Math.cos(a), y = cy + rr*Math.sin(a);
+        if (x*x + y*y > 1.0000001) { hit = [x, y]; break; }
+        if (steps % 2 === 0) d += (d ? ' L' : 'M') + sx(x).toFixed(1) + ' ' + sy(y).toFixed(1);
+        a -= 0.025; steps++;
+      }
+      if (d) mksvg('path', {d: d, fill: 'none', stroke: '#2563eb', strokeWidth: 1, opacity: 0.45}, gT);
+      if (hit) {
+        thetas.push(Math.atan2(hit[1], hit[0]));
+        mksvg('circle', {cx: sx(hit[0]), cy: sy(hit[1]), r: 3.2, fill: '#dc2626'}, gQ);
+      }
+    }
+    thetas.sort(function(a,b){ return a-b; });
+    var cov = 'M', frac = 0, beta = 0;
+    if (thetas.length > 2) {
+      var n = thetas.length, maxGap = -1, k = 0;
+      for (var j = 0; j < n; j++) {
+        var nxt = (j+1 < n) ? thetas[j+1] : thetas[0] + 2*Math.PI;
+        var gap = nxt - thetas[j];
+        if (gap > maxGap) { maxGap = gap; k = j; }
+      }
+      var start = thetas[(k+1) % n], end = thetas[k];
+      if (end < start) end += 2*Math.PI;
+      for (var m = 0; m <= 60; m++) {
+        var th = start + (end-start)*m/60;
+        cov += (m ? ' L' : '') + sx(Math.cos(th)).toFixed(1) + ' ' + sy(Math.sin(th)).toFixed(1);
+      }
+      frac = (2*Math.PI - maxGap)/(2*Math.PI);
+      beta = (2*Math.PI - maxGap)/2;
+    }
+    $('coverArc').setAttribute('d', cov);
+    $('vFrac').textContent = frac <= 0.51 ? (frac*6).toFixed(2) + '/6 ≈ ' + (frac*100).toFixed(1) + '%' : (frac*3).toFixed(2) + '/3 ≈ ' + (frac*100).toFixed(1) + '%';
+    $('vBeta').textContent = (beta*180/Math.PI).toFixed(1) + '°（半角 ' + (beta*90/Math.PI).toFixed(1) + '°）';
+    $('vB').textContent = (1/rr).toFixed(2) + ' ×(mv₀/qR)';
+  }
+  $('slR').addEventListener('input', function(){ build(parseFloat(this.value)); });
+  $('preset1').addEventListener('click', function(){ $('slR').value = 0.5; build(0.5); });
+  $('preset2').addEventListener('click', function(){ $('slR').value = 0.866; build(0.866); });
+  build(0.5);
+})();
+</script>
+<!-- ==================== 物理 第15题 ==================== -->
+<h2 id="p15">物理 · 第15题 电场偏转 + 圆形磁场（你卷子上的大题）</h2>
+<div class="qcard"><b>题目：</b>第二象限内有平行 y 轴的匀强电场 E（沿 +y 方向）。第一、四象限内有圆形边界匀强磁场（垂直 xOy 平面向里，大小 B），边界过原点 O 且与 y 轴相切，圆心 O&#8321;。带负电粒子（不计重力）以速度 v&#8320; 从 P(&minus;2&radic;3L, L) 沿平行 x 轴正方向射入电场，通过 O 进入第四象限，<b>射出磁场时速度方向沿 y 轴负方向</b>。求 (1) 比荷 q/m；(2) 磁场圆半径 R。
+<span class="ans ok">你的作答正确 ✓（两问全对）</span></div>
+<h3>动图演示：点播放看粒子先抛物线偏转、再进磁场转 60°，出射速度恰沿 &minus;y（归一化参数：L=1, v&#8320;=1, E=1）</h3>
+<div class="stage">
+<svg id="emSvg" viewBox="0 0 640 315" width="100%">
+<defs><marker id="arr15" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#1f2937"/></marker></defs>
+<rect x="15" y="15" width="165" height="285" fill="#dbeafe" opacity="0.5"/>
+<line x1="60" y1="270" x2="60" y2="210" stroke="#2563eb" stroke-width="2" marker-end="url(#arr15)"/>
+<line x1="120" y1="270" x2="120" y2="210" stroke="#2563eb" stroke-width="2" marker-end="url(#arr15)"/>
+<text x="20" y="30" font-size="12" fill="#2563eb">E 沿 +y，负电荷受力 &darr;（向下加速）</text>
+<circle cx="364" cy="88" r="184" fill="#fef2f2" opacity="0.55" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="430" y="105" font-size="13" fill="#dc2626">圆形磁场区（向里 ⊗）</text>
+<line x1="180" y1="15" x2="180" y2="300" stroke="#9ca3af" stroke-width="1"/>
+<line x1="15" y1="88" x2="620" y2="88" stroke="#9ca3af" stroke-width="1"/>
+<path id="fullPath" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<line id="vIn" stroke="#1f2937" stroke-width="2" marker-end="url(#arr15)"/>
+<line id="vOut" stroke="#1f2937" stroke-width="2" marker-end="url(#arr15)"/>
+<circle id="emPt" r="6" fill="#dc2626"/>
+<circle id="pStart" r="4.5" fill="#1f2937"/>
+<text id="pStartLbl" font-size="13" fill="#1f2937"></text>
+<text x="186" y="80" font-size="13">O</text>
+<text x="370" y="80" font-size="13" fill="#dc2626">O&#8321;</text>
+<text id="qLbl" font-size="12" fill="#dc2626"></text>
+<text id="deg30" font-size="12" fill="#1f2937"></text>
+<text id="deg60" font-size="12" fill="#1f2937"></text>
+</svg>
+<div class="controls">
+<button id="emPlay" class="primary">▶ 播放</button>
+<span>进度：</span>
+<input id="emSl" type="range" min="0" max="2" step="0.005" value="0">
+<span id="emPhase" style="font-size:13px"></span>
+</div>
+</div>
+<ol class="steps">
+<li><b>电场段（类平抛）：</b>x 方向匀速：t = 2&radic;3L/v&#8320;；y 方向：L = &frac12;at&sup2; &rArr; a = v&#8320;&sup2;/(6L)。由 a = qE/m 得 <span class="eq">q/m = v&#8320;&sup2;/(6LE)</span>。</li>
+<li><b>到达 O 时：</b>v_y = at = (&radic;3/3)v&#8320;，tan&theta; = v_y/v&#8320; = &radic;3/3 &rArr; &theta; = 30&deg;，v = 2v&#8320;/&radic;3。方向在 x 轴下方 30&deg;。</li>
+<li><b>磁场段：</b>r = mv/(qB) = <span class="eq">4&radic;3EL/(v&#8320;B)</span>。负电荷、磁场向里 &rarr; 顺时针转；出射速度沿 &minus;y，说明共转过 <b>60&deg;</b>。</li>
+<li><b>几何：</b>磁场圆与 y 轴切于 O &rArr; O&#8321;(R, 0)。轨迹圆心 O&#8322; = (&minus;r/2, &minus;&radic;3r/2)，出射点 Q(r/2, &minus;&radic;3r/2)。把 Q 代入磁场圆方程 (x&minus;R)&sup2; + y&sup2; = R&sup2; 化简得 r&sup2; = rR &rArr; <b>R = r = 4&radic;3EL/(v&#8320;B)</b>。</li>
+</ol>
+<div class="okbox"><b>草稿核对：</b>你卷面上的 t、a、&theta; = 30&deg;、v = 2v&#8320;/&radic;3、r 与 R = 4&radic;3EL/(v&#8320;B) 全部正确。这题你的主要风险不是不会，而是<b>几何步骤要写全</b>：务必写出 O&#8321;(R,0)、O&#8322; 坐标和"Q 在圆上"的代入过程，否则第二问容易扣步骤分。</div>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var s = 46, OX = 180, OY = 88;
+  var sx = function(x){ return OX + s*x; };
+  var sy = function(y){ return OY - s*y; };
+  var sq3 = Math.sqrt(3);
+  // 全路径：抛物线 P->O + 圆弧 O->Q
+  var d = 'M' + sx(-2*sq3).toFixed(1) + ' ' + sy(1).toFixed(1);
+  for (var i = 1; i <= 40; i++) { var t = 2*sq3*i/40; d += ' L' + sx(-2*sq3+t).toFixed(1) + ' ' + sy(1 - t*t/12).toFixed(1); }
+  for (var j = 1; j <= 40; j++) { var al = (60 - 60*j/40)*Math.PI/180; d += ' L' + sx(-2 + 4*Math.cos(al)).toFixed(1) + ' ' + sy(-2*sq3 + 4*Math.sin(al)).toFixed(1); }
+  $('fullPath').setAttribute('d', d);
+  $('pStart').setAttribute('cx', sx(-2*sq3)); $('pStart').setAttribute('cy', sy(1));
+  $('pStartLbl').setAttribute('x', sx(-2*sq3)-10); $('pStartLbl').setAttribute('y', sy(1)-10);
+  $('pStartLbl').textContent = 'P';
+  $('qLbl').setAttribute('x', sx(2)+8); $('qLbl').setAttribute('y', sy(-2*sq3)+4);
+  $('qLbl').textContent = 'Q（出射速度沿 &minus;y）';
+  $('deg30').setAttribute('x', sx(0)+30); $('deg30').setAttribute('y', sy(0)+26);
+  $('deg30').textContent = '入射速度偏 30&deg;';
+  $('deg60').setAttribute('x', sx(0.2)-10); $('deg60').setAttribute('y', sy(-2.6));
+  $('deg60').textContent = '磁场中偏转 60&deg;';
+  function posAt(u){
+    if (u <= 1) { var t = 2*sq3*u; return [-2*sq3 + t, 1 - t*t/12, Math.atan2(-t/6, 1)]; }
+    var w = u - 1, al = (60 - 60*w)*Math.PI/180;
+    return [-2 + 4*Math.cos(al), -2*sq3 + 4*Math.sin(al), al - Math.PI/2];
+  }
+  function render(u){
+    var p = posAt(u);
+    $('emPt').setAttribute('cx', sx(p[0])); $('emPt').setAttribute('cy', sy(p[1]));
+    $('emSl').value = u;
+    $('emPhase').textContent = u <= 1 ? '电场段（类平抛）' : '磁场段（圆周 60&deg;）';
+    if (u > 0.999) {
+      $('vIn').setAttribute('x1', sx(0)); $('vIn').setAttribute('y1', sy(0));
+      $('vIn').setAttribute('x2', sx(0.9*Math.cos(-Math.PI/6))); $('vIn').setAttribute('y2', sy(0.9*Math.sin(-Math.PI/6)));
+    } else { $('vIn').setAttribute('x1', 0); $('vIn').setAttribute('y1', 0); $('vIn').setAttribute('x2', 0); $('vIn').setAttribute('y2', 0); }
+    if (u > 1.999) {
+      $('vOut').setAttribute('x1', sx(2)); $('vOut').setAttribute('y1', sy(-2*sq3));
+      $('vOut').setAttribute('x2', sx(2)); $('vOut').setAttribute('y2', sy(-2*sq3-1.2));
+    } else { $('vOut').setAttribute('x1', 0); $('vOut').setAttribute('y1', 0); $('vOut').setAttribute('x2', 0); $('vOut').setAttribute('y2', 0); }
+  }
+  var playing = false, raf = null;
+  $('emSl').addEventListener('input', function(){ playing = false; $('emPlay').textContent = '▶ 播放'; if (raf) cancelAnimationFrame(raf); render(parseFloat(this.value)); });
+  $('emPlay').addEventListener('click', function(){
+    if (playing) { playing = false; this.textContent = '▶ 播放'; cancelAnimationFrame(raf); return; }
+    playing = true; this.textContent = '⏸ 暂停';
+    var u0 = parseFloat($('emSl').value), t0 = null;
+    (function loop(now){
+      if (!playing) return;
+      if (t0 === null) t0 = now;
+      var u = u0 + (now - t0)/4000;
+      if (u >= 2) { u = 2; render(2); playing = false; $('emPlay').textContent = '↻ 重播'; cancelAnimationFrame(raf); return; }
+      render(u);
+      raf = requestAnimationFrame(loop);
+    })(performance.now());
+  });
+  render(0);
+})();
+</script>
+<!-- ==================== 物理 第19题 ==================== -->
+<h2 id="p19">物理 · 第19题 三角形磁场 + 平行板偏转（14 分大题）</h2>
+<div class="qcard"><b>题目（按片可辨识部分）：</b>直角三角形 abc 中 ac = 0.2 m，&ang;abc = 30&deg;，三角形区域内有向里的匀强磁场；ac 右侧是两块长 0.2 m 的平行金属板（间距 = ac），上板负、下板正，板间 E 沿竖直方向。t = 0 时质量 m = 2&times;10&#8318;&sup1;&#8313; kg、带电量 q = &minus;1&times;10&#8318;&sup1;&sup2; C 的粒子从 bc 边中点 A 进入磁场，初速度 v&#8320; = 2&times;10&#8308; m/s，从 ac 边中点 M <b>垂直 ac</b> 进入平行板间，偏转后落在下极板延长线上的 P 点。不计重力。
+<br>(1) 磁感应强度 B；(2) 电场中运动时间与磁场中运动时间之比；(3) 平行板右移 0.4 m，其他条件不变，要粒子仍落在 P，板间场强变为多少？
+<span class="ans ok">你的 (1)(2) 正确 ✓，(3) 存疑（见下）</span></div>
+<h3>动图 ①：播放看粒子在磁场中走 60° 圆弧、垂直进入极板再偏转落到 P</h3>
+<div class="stage">
+<svg id="t19Svg" viewBox="0 0 680 360" width="100%">
+<defs><marker id="arr19" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#1f2937"/></marker></defs>
+<polygon points="96,200 210,134 210,200" fill="#fef2f2" opacity="0.6" stroke="#9ca3af"/>
+<text x="120" y="180" font-size="13" fill="#dc2626">B 向里 ⊗</text>
+<text x="100" y="222" font-size="13">b</text><text x="216" y="130" font-size="13">a</text><text x="216" y="204" font-size="13">c</text>
+<text x="122" y="192" font-size="13" fill="#6b7280">30&deg;</text>
+<g opacity="0.45">
+<line x1="210" y1="134" x2="276" y2="134" stroke="#1f2937" stroke-width="4"/>
+<line x1="210" y1="200" x2="276" y2="200" stroke="#1f2937" stroke-width="4"/>
+<text x="240" y="128" font-size="12">&minus; &minus; &minus;（上板）</text>
+<text x="240" y="216" font-size="12">+ + +（下板）</text>
+</g>
+<line x1="120" y1="196" x2="230" y2="196" stroke="#9ca3af" stroke-width="1" stroke-dasharray="4 4"/>
+<path id="origPath" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<circle id="t19Pt" r="5.5" fill="#dc2626"/>
+<circle cx="153" cy="200" r="4" fill="#1f2937"/><text x="140" y="222" font-size="13">A</text>
+<circle cx="210" cy="167" r="4" fill="#1f2937"/><text x="216" y="163" font-size="13">M</text>
+<circle id="p19Dot" r="4" fill="#1f2937"/><text id="p19Lbl" font-size="13">P</text>
+</svg>
+<div class="controls"><button id="t19Play" class="primary">▶ 播放</button></div>
+</div>
+<ol class="steps">
+<li><b>(1) 几何定半径：</b>出射速度 &perp; ac（水平）&rarr; 轨迹圆心 O&#8322; 在 M 正下方。ac = 0.2（30&deg;对边）&rarr; bc = 0.2&radic;3，A(&minus;0.1&radic;3, 0)，M(0, 0.1)。由 |O&#8322;A|&sup2; = 0.03 + (0.1&minus;r)&sup2; = r&sup2; 得 <b>r = 0.2 m</b>。B = mv/(|q|r) = 2&times;10&#8318;&sup1;&#8313;&times;2&times;10&#8308;/(10&#8318;&sup1;&sup2;&times;0.2) = <b>0.2 T</b>。</li>
+<li><b>(2) 时间之比：</b>磁场中转过圆心角 60&deg;（A、M 处半径方向 150&deg;&rarr;90&deg;）：t&#8321; = (60&deg;/360&deg;)&middot;2&pi;r/v = &pi;/(3&times;10&#8307;) s &asymp; 1.05&times;10&#8315;&#8305; s；电场中水平匀速：t&#8322; = 0.2/(2&times;10&#8308;) = 10&#8315;&#8305; s。故 <b>t&#8322;:t&#8321; = 3:&pi;</b>（题目问的是"电场中"比"磁场中"）。</li>
+<li><b>(3) 落点不变的条件（关键思路）：</b>板右移 0.4 m 后，粒子先匀速飞过无场区，进板偏转 y&prime; 后出板，再做匀速直线到 P。两个条件联立：板内偏转量 y&prime; = &frac12;(qE&prime;/m)(L/v&#8320;)&sup2;，出板速度斜率 u&prime; = (qE&prime;/m)(L/v&#8320;)/v&#8320;（注意 y&prime; = 0.1u&prime;，单位 m），且出板点与 P 共线。用下面动图 ② 拖 u&prime; 试：命中 P 时 <b>u&prime; = 1/3</b>，而原来 u&#8320; = 1/5，所以 <span class="eq">E&prime; = (u&prime;/u&#8320;)E&#8320; = (5/3)E&#8320;</span>。</li>
+</ol>
+<h3>动图 ②：第 (3) 问——拖 u&prime; 看出板后能否命中 P（红线 = 新轨迹，灰线 = 原轨迹）</h3>
+<div class="stage">
+<svg id="mvSvg" viewBox="0 0 680 360" width="100%">
+<polygon points="96,200 210,134 210,200" fill="#fef2f2" opacity="0.4"/>
+<g opacity="0.35">
+<line x1="210" y1="134" x2="276" y2="134" stroke="#1f2937" stroke-width="4"/>
+<line x1="210" y1="200" x2="276" y2="200" stroke="#1f2937" stroke-width="4"/>
+</g>
+<line x1="342" y1="134" x2="408" y2="134" stroke="#1f2937" stroke-width="5"/>
+<line x1="342" y1="200" x2="408" y2="200" stroke="#1f2937" stroke-width="5"/>
+<text x="352" y="126" font-size="12">&minus; &minus; &minus;</text>
+<text x="352" y="216" font-size="12">+ + +</text>
+<text x="350" y="245" font-size="12" fill="#6b7280">右移后的极板</text>
+<line x1="210" y1="167" x2="342" y2="167" stroke="#6b7280" stroke-width="1.2" stroke-dasharray="4 4"/>
+<text x="240" y="160" font-size="12" fill="#6b7280">无场区匀速</text>
+<path id="mvPath" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+<circle id="pMv" r="4.5" fill="#1f2937"/>
+<text x="566" y="250" font-size="13">P（固定落点）</text>
+</svg>
+<div class="controls">
+<span>出板速度斜率 u&prime;：</span>
+<input id="slU" type="range" min="0.15" max="0.5" step="0.005" value="0.2">
+<button id="hitBtn">跳到命中值 u&prime; = 1/3</button>
+</div>
+<div class="readout">
+<span style="color:var(--gray)">板内偏转 y&prime; = <b id="vYp" style="color:var(--ink)"></b> m</span>
+<span style="color:var(--gray)">落点纵坐标 = <b id="vLand" style="color:var(--ink)"></b> m（目标 &minus;0.1）</span>
+<span style="color:var(--gray)">偏差 = <b id="vDiff" style="color:var(--red)"></b></span>
+</div>
+</div>
+<div class="err"><b>(3) 数据存疑提示：</b>按片中可辨认的 m、q、v&#8320; 和几何（u&#8320; = 0.2）反推，板间场强应为 800 N/C 量级，与卷面印的 8&times;10&#8308; N/C 对不上——说明照片里某个数据（很可能是 m 或 q 的指数）没拍清。你笔记上的 4.0&times;10&sup2; N/C 也与之不符。方法（上面的联立方程 + 动图 ②）是通用的，请核对原卷数据后代入 E&prime; = (5/3)E&#8320;。</div>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var s = 330, OX = 210, OY = 200;
+  var sx = function(x){ return OX + s*x; };
+  var sy = function(y){ return OY - s*y; };
+  // 原轨迹：弧 A->M（圆心(0,-0.1) r=0.2, 世界角150°->90°）+ 抛物线 y=0.1-0.5x^2 (0<=x<=0.2) + 直线到 P(1.1,-0.1)
+  var d = '';
+  for (var i = 0; i <= 24; i++) { var al = (150 - 60*i/24)*Math.PI/180; d += (i?' L':'M') + sx(0.2*Math.cos(al)).toFixed(1) + ' ' + sy(-0.1 + 0.2*Math.sin(al)).toFixed(1); }
+  for (var j = 1; j <= 24; j++) { var x = 0.2*j/24; d += ' L' + sx(x).toFixed(1) + ' ' + sy(0.1 - 0.5*x*x).toFixed(1); }
+  d += ' L' + sx(1.1).toFixed(1) + ' ' + sy(-0.1).toFixed(1);
+  $('origPath').setAttribute('d', d);
+  $('p19Dot').setAttribute('cx', sx(1.1)); $('p19Dot').setAttribute('cy', sy(-0.1));
+  $('p19Lbl').setAttribute('x', sx(1.1)+8); $('p19Lbl').setAttribute('y', sy(-0.1)-8);
+  $('pMv').setAttribute('cx', sx(1.1)); $('pMv').setAttribute('cy', sy(-0.1));
+  var playing = false, raf = null;
+  $('t19Play').addEventListener('click', function(){
+    if (playing) { playing = false; this.textContent = '▶ 播放'; cancelAnimationFrame(raf); return; }
+    playing = true; this.textContent = '⏸ 暂停';
+    var path = $('origPath'), L = path.getTotalLength(), t0 = null;
+    (function loop(now){
+      if (!playing) return;
+      if (t0 === null) t0 = now;
+      var frac = ((now - t0)/4000) % 1.15;
+      if (frac > 1) frac = 1;
+      var pt = path.getPointAtLength(L*frac);
+      $('t19Pt').setAttribute('cx', pt.x); $('t19Pt').setAttribute('cy', pt.y);
+      if (frac >= 1 && now - t0 > 4300) { playing = false; $('t19Play').textContent = '↻ 重播'; return; }
+      raf = requestAnimationFrame(loop);
+    })(performance.now());
+  });
+  // (3) 新轨迹
+  function drawMv(up){
+    var yp = 0.1*up, k = up/0.4;
+    var d2 = 'M' + sx(0) + ' ' + sy(0.1) + ' L' + sx(0.4) + ' ' + sy(0.1);
+    for (var i = 1; i <= 20; i++) { var x = 0.4 + 0.2*i/20; d2 += ' L' + sx(x).toFixed(1) + ' ' + sy(0.1 - k*(x-0.4)*(x-0.4)).toFixed(1); }
+    var x0 = 0.6, y0 = 0.1 - yp;
+    d2 += ' L' + sx(1.35).toFixed(1) + ' ' + sy(y0 - up*(1.35-x0)).toFixed(1);
+    $('mvPath').setAttribute('d', d2);
+    var land = y0 - up*(1.1 - x0);
+    var diff = land - (-0.1);
+    $('vYp').textContent = yp.toFixed(3);
+    $('vLand').textContent = land.toFixed(3);
+    $('vDiff').textContent = (diff >= 0 ? '+' : '') + diff.toFixed(3) + (Math.abs(diff) < 0.005 ? '  ✓ 命中 P！' : (diff > 0 ? '（落点偏高）' : '（落点偏低）'));
+  }
+  $('slU').addEventListener('input', function(){ drawMv(parseFloat(this.value)); });
+  $('hitBtn').addEventListener('click', function(){ $('slU').value = 0.3333; drawMv(1/3); });
+  drawMv(0.2);
+})();
+</script>
+<!-- ==================== 化学 第7题 ==================== -->
+<h2 id="c7">化学 · 第7题 PCl&#8323; + Cl&#8322; ⇌ PCl&#8325; 压强–时间图像（选<b>错误</b>说法）</h2>
+<div class="qcard"><b>题目：</b>3 个容积均为 10 L 的密闭容器中分别放入 0.2 mol PCl&#8323; 和 0.2 mol Cl&#8322;，发生反应 PCl&#8323;(g)+Cl&#8322;(g) &rlhar; PCl&#8325;(g)（放热）。各容器内气体总压强随时间变化如图（a：160&rarr;120 kPa，60 min 平衡；b：175&rarr;120，更快；c：180&rarr;140，40 min 平衡）。说法<b>错误</b>的是（ ）
+<br>A. 实验 a 从开始至 60 min，v(Cl&#8322;) = 1/6000 mol&middot;L&#8315;&sup1;&middot;min&#8315;&sup1;&nbsp;&nbsp; B. 与 a 相比，b 使用了催化剂，c 在较高温度下进行&nbsp;&nbsp; C. 实验 c 的平衡常数为 9 L&middot;mol&#8315;&sup1;&nbsp;&nbsp; D. 三组平衡转化率 a = b &gt; c
+<span class="ans ok">答案 C</span><span class="ans ok">你的作答正确 ✓</span></div>
+<h3>动图：拖时间轴看三条曲线；再用 K 计算器验证 C 选项</h3>
+<div class="stage">
+<svg id="c7Svg" viewBox="0 0 660 300" width="100%">
+<line x1="55" y1="250" x2="640" y2="250" stroke="#1f2937" stroke-width="1.5"/>
+<line x1="55" y1="250" x2="55" y2="15" stroke="#1f2937" stroke-width="1.5"/>
+<text x="640" y="270" font-size="13">t/min</text>
+<text x="20" y="20" font-size="13">p/kPa</text>
+<text x="35" y="254" font-size="11">110</text><text x="35" y="184" font-size="11">140</text><text x="35" y="114" font-size="11">160</text><text x="28" y="44" font-size="11">180</text>
+<line x1="55" y1="180" x2="640" y2="180" stroke="#9ca3af" stroke-dasharray="4 4"/>
+<line x1="55" y1="110" x2="640" y2="110" stroke="#9ca3af" stroke-dasharray="4 4"/>
+<path id="ca" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<path id="cb" fill="none" stroke="#16a34a" stroke-width="2.5"/>
+<path id="cc" fill="none" stroke="#dc2626" stroke-width="2.5"/>
+<text x="560" y="205" font-size="13" fill="#2563eb">a</text>
+<text x="545" y="185" font-size="13" fill="#16a34a">b</text>
+<text x="580" y="160" font-size="13" fill="#dc2626">c</text>
+<line id="c7T" x1="0" y1="15" x2="0" y2="250" stroke="#1f2937" stroke-width="1.5"/>
+<circle id="c7Da" r="5" fill="#2563eb"/><circle id="c7Db" r="5" fill="#16a34a"/><circle id="c7Dc" r="5" fill="#dc2626"/>
+<text id="c7Ta" font-size="13" fill="#2563eb"></text>
+<text id="c7Tb" font-size="13" fill="#16a34a"></text>
+<text id="c7Tc" font-size="13" fill="#dc2626"></text>
+</svg>
+<div class="controls">
+<span>时间 t：</span>
+<input id="c7Sl" type="range" min="0" max="70" step="0.5" value="60">
+<span id="c7Tv" style="font-variant-numeric:tabular-nums"></span>
+</div>
+<div class="controls">
+<span>K 计算器（同温下 n &prop; p）：</span>
+<button id="kA">a：p&#8320;=160 &rarr; p=120</button>
+<button id="kB">b：p&#8320;=175 &rarr; p=120</button>
+<button id="kC">c：p&#8320;=180 &rarr; p=140</button>
+<span id="kOut" style="font-size:15px"></span>
+</div>
+</div>
+<ol class="steps">
+<li><b>A 对：</b>同温同容 n &prop; p。a 中 &Delta;n = 0.4&times;(160&minus;120)/160 = 0.1 mol &rArr; &Delta;c(Cl&#8322;) = 0.01 mol/L，v = 0.01/60 = <b>1/6000</b> mol/(L&middot;min)。</li>
+<li><b>B 对：</b>b 与 a 平衡压强相同（120）但更快 &rarr; <b>催化剂</b>；c 起始 180 &gt; 160（同 n、同 V）&rarr; <b>温度更高</b>，且平衡压强更高与放热反应升温左移一致。</li>
+<li><b>C 错（答案）：</b>c 中 &xi; = 0.4&times;(180&minus;140)/180 = 0.0889 mol，平衡浓度：PCl&#8325; 0.00889、PCl&#8323; = Cl&#8322; 0.0111 mol/L，<span class="eq">K = 0.00889/0.0111&sup2; &asymp; 72 L/mol</span>，不是 9。（你草稿上写的 4/3 那步是比例中间量，K 要代浓度。）</li>
+<li><b>D 对：</b>a、b 同温同平衡 &rarr; 转化率相等；c 温度高、平衡左移 &rarr; 转化率最低：a = b &gt; c。</li>
+</ol>
+<div class="err"><b>易错点：</b>① c 组温度与 a 不同，算 n 必须用 c 自己的起始压强 180 kPa 做比例（n = 0.4&times;p/p&#8320;），别拿 160 当基准；② 求 K 时代的是<b>浓度</b>（除以 10 L）；③ 题目选「错误」说法。</div>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var px = function(t){ return 55 + 585*t/70; };
+  var py = function(p){ return 250 - (p-110)*140/80; };
+  function curve(p0, pe, tau){
+    var d = 'M' + px(0) + ' ' + py(p0);
+    for (var t = 1; t <= 70; t++) { var p = pe + (p0-pe)*Math.exp(-t/tau); d += ' L' + px(t).toFixed(1) + ' ' + py(p).toFixed(1); }
+    return d;
+  }
+  $('ca').setAttribute('d', curve(160, 120, 16));
+  $('cb').setAttribute('d', curve(175, 120, 8));
+  $('cc').setAttribute('d', curve(180, 140, 7));
+  function render(t){
+    $('c7T').setAttribute('x1', px(t)); $('c7T').setAttribute('x2', px(t));
+    var pa = 120 + 40*Math.exp(-t/16), pb = 120 + 55*Math.exp(-t/8), pc = 140 + 40*Math.exp(-t/7);
+    $('c7Da').setAttribute('cx', px(t)); $('c7Da').setAttribute('cy', py(pa));
+    $('c7Db').setAttribute('cx', px(t)); $('c7Db').setAttribute('cy', py(pb));
+    $('c7Dc').setAttribute('cx', px(t)); $('c7Dc').setAttribute('cy', py(pc));
+    $('c7Ta').setAttribute('x', px(t)+8); $('c7Ta').setAttribute('y', py(pa)-6); $('c7Ta').textContent = 'a: ' + pa.toFixed(0);
+    $('c7Tb').setAttribute('x', px(t)+8); $('c7Tb').setAttribute('y', py(pb)-6); $('c7Tb').textContent = 'b: ' + pb.toFixed(0);
+    $('c7Tc').setAttribute('x', px(t)+8); $('c7Tc').setAttribute('y', py(pc)-6); $('c7Tc').textContent = 'c: ' + pc.toFixed(0);
+    $('c7Tv').textContent = t + ' min';
+  }
+  $('c7Sl').addEventListener('input', function(){ render(parseFloat(this.value)); });
+  function kcalc(p0, pe){
+    var xi = 0.4*(p0-pe)/p0;
+    var K = 10*xi/Math.pow(0.2-xi, 2);
+    $('kOut').innerHTML = '&nbsp;&rarr; &xi; = ' + xi.toFixed(4) + ' mol，<b>K = ' + K.toFixed(1) + ' L/mol</b>';
+    return K;
+  }
+  $('kA').addEventListener('click', function(){ kcalc(160, 120); });
+  $('kB').addEventListener('click', function(){ kcalc(175, 120); });
+  $('kC').addEventListener('click', function(){ kcalc(180, 140); });
+  render(60);
+})();
+</script>
+
+<!-- ==================== 化学 第15题 ==================== -->
+<h2 id="c15">化学 · 第15题 NO 转化率–温度图像（选<b>错误</b>说法）</h2>
+<div class="qcard"><b>题目：</b>容积不变的刚性容器中按投料比 n(H&#8322;)/n(NO) = 1 发生反应 2H&#8322;(g)+2NO(g) &rlhar; N&#8322;(g)+2H&#8322;O(g) &Delta;H = &minus;664.1 kJ/mol。不同催化剂下，反应<b>相同时间</b>测得 NO 转化率与温度关系如图，反应速率 v = k&middot;c&#7498;(H&#8322;)&middot;c&sup2;(NO)。说法<b>错误</b>的是（ ）
+<br>A. 正反应活化能比逆反应小&nbsp;&nbsp; B. 使用催化剂甲与乙相比，正反应活化能更低&nbsp;&nbsp; C. 用催化剂乙时，高于 350&deg;C 转化率下降是因反应放热，达平衡后升温平衡逆移&nbsp;&nbsp; D. T&#8321;&deg;C 初始速率 V&#8320;，H&#8322; 转化率 60% 时速率为 0.064V&#8320;，可知 m = 1
+<span class="ans ok">答案 B</span></div>
+<h3>动图：拖温度滑块，读两条曲线的转化率，注意 350&deg;C 前后的控制因素不同</h3>
+<div class="stage">
+<svg id="c15Svg" viewBox="0 0 660 300" width="100%">
+<line x1="50" y1="250" x2="640" y2="250" stroke="#1f2937" stroke-width="1.5"/>
+<line x1="50" y1="250" x2="50" y2="15" stroke="#1f2937" stroke-width="1.5"/>
+<text x="640" y="272" font-size="13">T/&deg;C</text>
+<text x="14" y="20" font-size="13">NO 转化率/%</text>
+<line x1="350" y1="15" x2="350" y2="250" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="326" y="268" font-size="13" fill="#dc2626">350&deg;C</text>
+<rect x="52" y="15" width="296" height="235" fill="#eff6ff" opacity="0.6"/>
+<rect x="352" y="15" width="286" height="235" fill="#fef2f2" opacity="0.5"/>
+<text x="70" y="35" font-size="12" fill="#2563eb">未达平衡区：温度&uarr;速率&uarr;，转化率&uarr;（动力学控制）</text>
+<text x="365" y="35" font-size="12" fill="#dc2626">达平衡区：升温平衡逆移（放热），转化率&darr;</text>
+<path id="catA" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+<path id="catB" fill="none" stroke="#16a34a" stroke-width="2.5"/>
+<text x="280" y="60" font-size="13" fill="#2563eb">催化剂甲</text>
+<text x="300" y="150" font-size="13" fill="#16a34a">催化剂乙</text>
+<line id="c15T" x1="0" y1="15" x2="0" y2="250" stroke="#1f2937" stroke-width="1.2"/>
+<circle id="c15Da" r="5" fill="#2563eb"/>
+<circle id="c15Db" r="5" fill="#16a34a"/>
+<text id="c15Ta" font-size="13" fill="#2563eb"></text>
+<text id="c15Tb" font-size="13" fill="#16a34a"></text>
+</svg>
+<div class="controls">
+<span>温度：</span>
+<input id="c15Sl" type="range" min="150" max="400" step="1" value="320">
+<span id="c15Tv" style="font-variant-numeric:tabular-nums"></span>
+</div>
+</div>
+<ol class="steps">
+<li><b>A 对：</b>&Delta;H = E<sub>a正</sub> &minus; E<sub>a逆</sub> = &minus;664.1 &lt; 0 &rArr; E<sub>a正</sub> &lt; E<sub>a逆</sub>。</li>
+<li><b>B 错（答案）：</b>图中转化率是「<b>相同反应时间</b>」测得的，并非平衡转化率。甲的曲线高只能说明相同时间内甲催化下反应<b>更快</b>（催化效率不同），但两种催化剂各自降低正反应活化能的多少，<b>不能由这张图直接得出该结论</b>——比较活化能需要速率常数 k 随温度的变化数据（阿伦尼乌斯图），转化率数据不够。</li>
+<li><b>C 对：</b>乙曲线 350&deg;C 前未达平衡（升温使速率增大，转化率升高）；350&deg;C 后达到平衡，放热反应升高温度平衡逆向移动，转化率下降。</li>
+<li><b>D 对：</b>投料比 1:1，H&#8322; 转化 60% 时 c(H&#8322;) = c(NO) = 0.4c&#8320;，v/V&#8320; = 0.4&#7498;(0.4)&sup2; = 0.4&#7498;&sup2;&sup2; = 0.064 = 0.4&sup3; &rArr; m + 2 = 3 &rArr; <b>m = 1</b>。</li>
+</ol>
+<div class="err"><b>核心模型：</b>「相同时间转化率–温度」图必有峰值——峰前是动力学控制（越快越好，催化剂影响大），峰后是热力学控制（催化剂无影响，平衡说了算）。涉及催化剂比较活化能的选项要格外小心。</div>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var pA = [[150,25],[180,45],[200,67],[220,80],[250,87],[290,91],[320,92],[350,91],[400,85]];
+  var pB = [[150,17],[180,26],[200,45],[240,56],[270,68],[300,73],[320,75],[350,77],[400,70]];
+  var px = function(T){ return 50 + 590*(T-150)/250; };
+  var py = function(a){ return 250 - 2.3*a; };
+  function interp(P, T){
+    if (T <= P[0][0]) return P[0][1];
+    for (var i = 1; i < P.length; i++) if (T <= P[i][0]) { var x0=P[i-1][0], y0=P[i-1][1], x1=P[i][0], y1=P[i][1]; return y0 + (y1-y0)*(T-x0)/(x1-x0); }
+    return P[P.length-1][1];
+  }
+  function pathOf(P){ var d = 'M'; for (var i = 0; i < P.length; i++) d += (i?' L':'') + px(P[i][0]) + ' ' + py(P[i][1]); return d; }
+  $('catA').setAttribute('d', pathOf(pA));
+  $('catB').setAttribute('d', pathOf(pB));
+  function render(T){
+    $('c15T').setAttribute('x1', px(T)); $('c15T').setAttribute('x2', px(T));
+    var a = interp(pA, T), b = interp(pB, T);
+    $('c15Da').setAttribute('cx', px(T)); $('c15Da').setAttribute('cy', py(a));
+    $('c15Db').setAttribute('cx', px(T)); $('c15Db').setAttribute('cy', py(b));
+    $('c15Ta').setAttribute('x', px(T)+8); $('c15Ta').setAttribute('y', py(a)-8); $('c15Ta').textContent = '甲: ' + a.toFixed(0) + '%';
+    $('c15Tb').setAttribute('x', px(T)+8); $('c15Tb').setAttribute('y', py(b)+18); $('c15Tb').textContent = '乙: ' + b.toFixed(0) + '%';
+    $('c15Tv').textContent = T + '°C（' + (T < 350 ? '未达平衡区' : '平衡控制区') + '）';
+  }
+  $('c15Sl').addEventListener('input', function(){ render(parseFloat(this.value)); });
+  render(320);
+})();
+</script>
+
+<h2>待补充的题目</h2>
+<div class="note">
+<b>以下题目因照片不完整暂未收入详解，补图/补文字后我可以继续添加：</b>
+<ol style="margin:6px 0">
+<li><b>数学多选题</b>（卷子右侧）：A(0,1)、B(0,2)、C 在抛物线 y = x&sup2;/4 上、直线 l 与圆相切、判断最值存在性——选项和结论部分没拍全。</li>
+<li><b>物理第12题</b>：C、D 两个选项原文没拍到（已按常规版本给出 A、B 的解析和 R<sub>H</sub> = 1/(ne) 的推导）。</li>
+<li><b>物理第19题</b>：质量 m 和场强 E 的指数在照片里看不清，导致第 (3) 问数值无法最终核定——方法已给出，核对数据后按 E&prime; = (5/3)E&#8320; 代入即可。</li>
+</ol>
+</div>
+<p class="sub">本文档为交互式 HTML：用浏览器打开后，拖动各题滑块、点击「播放 / 动画 / 预设」按钮即可观察动态过程。建议电脑端打开效果更佳。</p>
+</body>
+</html>
